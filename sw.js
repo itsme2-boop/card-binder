@@ -1,5 +1,5 @@
-/* Card Binder service worker v2.6 — cache the app shell so it opens offline; runtime-cache card images and the number reader. */
-const SHELL="cb-shell-v2.6";
+/* Card Binder service worker v3.0 — cache the app shell so it opens offline; runtime-cache card images and the number reader. */
+const SHELL="cb-shell-v3.0";
 const IMG="cb-img-v1";
 const CORE=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png"];
 self.addEventListener("install",e=>{
