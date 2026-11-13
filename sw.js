@@ -1,7 +1,7 @@
 /* Card Binder service worker v3.6 — cache the app shell so it opens offline; runtime-cache card images and the number reader.
    v3.5: only answers for this site and the hosts below. Everything else (Scrydex pictures of Japanese promos) goes straight
    to the network: passing those opaque no-cors image loads through the worker left them blank in Safari on the iPhone. */
-const SHELL="cb-shell-v3.6";
+const SHELL="cb-shell-v3.7";
 const IMG="cb-img-v1";
 const CORE=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png"];
 self.addEventListener("install",e=>{
