@@ -1,7 +1,7 @@
 /* Card Binder service worker v3.6 — cache the app shell so it opens offline; runtime-cache card images and the number reader.
    v3.5: only answers for this site and the hosts below. Everything else (Scrydex pictures of Japanese promos) goes straight
    to the network: passing those opaque no-cors image loads through the worker left them blank in Safari on the iPhone. */
-const SHELL="cb-shell-v3.9";
+const SHELL="cb-shell-v3.10";
 const IMG="cb-img-v1";
 const CORE=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png"];
 self.addEventListener("install",e=>{
@@ -31,7 +31,7 @@ self.addEventListener("fetch",e=>{
   if(!own&&url.host!=="cdn.jsdelivr.net")return; // not ours (Scrydex etc.): the browser fetches it as normal
   // app page: network-first so a new version shows straight away
   if(own&&(req.mode==="navigate"||url.pathname.endsWith("/index.html"))){
-    e.respondWith(fetch(req).then(res=>{if(res.ok){const cp=res.clone();caches.open(SHELL).then(c=>c.put(req,cp));}return res;}).catch(()=>caches.match(req).then(h=>h||caches.match("./index.html"))));
+    e.respondWith(fetch(req,{cache:"no-store"}).then(res=>{if(res.ok){const cp=res.clone();caches.open(SHELL).then(c=>c.put(req,cp));}return res;}).catch(()=>caches.match(req).then(h=>h||caches.match("./index.html"))));
     return;
   }
   // icons + number reader (jsdelivr): cache-first, fill in background
